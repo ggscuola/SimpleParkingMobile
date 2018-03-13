@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView mHello = findViewById(R.id.hello);
-        mHello.setText("Hello F. World");
+        mHello.setText("Hello Fucking World minimanimu");
     }
 }
