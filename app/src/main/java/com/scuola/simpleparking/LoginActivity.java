@@ -336,6 +336,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 finish();
+                overridePendingTransition(0,R.anim.animation_back_intent);
+
                 //creo nuova istanza di tipo intent e gli dico da dove a dove andare
                 Intent intent =new Intent (LoginActivity.this, MainActivity.class);
                 // faccio partitre l'intent appena creata

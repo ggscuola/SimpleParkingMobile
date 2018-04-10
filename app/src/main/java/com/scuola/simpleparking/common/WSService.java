@@ -1,11 +1,9 @@
 package com.scuola.simpleparking.common;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.scuola.simpleparking.MainActivity;
 
@@ -118,9 +116,7 @@ public class WSService {
             try{
                 if(result != null)
                 {
-                    //parser
-                    // JSONObject reader = new JSONObject(result);
-                    //  JSONArray list = reader.getJSONArray("");
+                    JsonParse.parseJsonMap(result);
 
                     new Runnable() {
                         @Override
@@ -135,10 +131,13 @@ public class WSService {
             }catch (Exception e)
 
             {
+
                 Log.e(TAG, e.getMessage());
 
             }
         }
+
+
     }
 
 
