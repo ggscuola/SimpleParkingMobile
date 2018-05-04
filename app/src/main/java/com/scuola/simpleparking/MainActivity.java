@@ -17,10 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
-    private EditText mInput;
-    private TextView mHello1;
-    private Button mButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
         getReferences();
 
-        mHello1.setText(getString(R.string.app_name));
 
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+
+      /*  mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -46,13 +42,12 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(v.getContext(), "Ciao Marco", Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });*/
     }
 
     private void getReferences(){
 
-        mHello1 = findViewById(R.id.hello1);
-        mButton = findViewById(R.id.button);
+
 
     }
 }

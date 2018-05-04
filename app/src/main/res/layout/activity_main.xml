@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <LinearLayout
 
@@ -13,23 +15,161 @@
         android:orientation="vertical"
         tools:context="com.scuola.simpleparking.MainActivity">
 
-
-
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/hello1"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Hello World!"/>
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"/>
+            android:text="Posti disponibili: "/>
+
+        <TextView
+            android:id="@+id/posti_disponibili"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"/>
 
 
     </LinearLayout>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/occupato" />
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/occupato" />
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:layout_weight="1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:backgroundTint="@android:color/black"
+            android:src="@mipmap/libero" />
+
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_marginTop="36dp"
+        android:id="@+id/splash_imageview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Powered by IT Group"/>
+
+
+    </LinearLayout>
+
 
 </ScrollView>
