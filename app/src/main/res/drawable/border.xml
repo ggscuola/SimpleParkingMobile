@@ -6,8 +6,8 @@
 
     </corners>
 
-    <stroke android:color="@color/colorAccent"
-       android:width="2dp">
+    <stroke android:color="@android:color/white"
+       android:width="3dp">
 
     </stroke>
 </shape>

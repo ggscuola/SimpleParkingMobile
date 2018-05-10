@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
 
 
     <LinearLayout
@@ -46,27 +47,27 @@
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
 
         <ImageButton
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
         <ImageButton
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
 
         <ImageButton
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/occupato" />
 
 
@@ -85,27 +86,27 @@
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
 
         <ImageButton
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
         <ImageButton
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
 
         <ImageButton
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
 
 
@@ -124,27 +125,27 @@
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/occupato" />
 
         <ImageButton
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
         <ImageButton
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
 
         <ImageButton
             android:layout_weight="1"
             android:layout_width="@dimen/btn_size_width"
             android:layout_height="@dimen/btn_size_height"
-            android:backgroundTint="@android:color/black"
+            android:background="@drawable/border"
             android:src="@mipmap/libero" />
 
 
@@ -154,7 +155,7 @@
 
     <ImageView
         android:layout_marginTop="36dp"
-        android:id="@+id/splash_imageview"
+        android:id="@+id/image_home"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
@@ -166,6 +167,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@android:color/white"
         android:text="Powered by IT Group"/>
 
 

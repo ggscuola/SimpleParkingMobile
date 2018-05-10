@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
+    private ImageView mLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +29,7 @@ public class MainActivity extends AppCompatActivity {
         getReferences();
 
 
-
-
-      /*  mButton.setOnClickListener(new View.OnClickListener() {
+        mLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -42,11 +43,12 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(v.getContext(), "Ciao Marco", Toast.LENGTH_SHORT).show();
 
             }
-        });*/
+        });
     }
 
     private void getReferences(){
 
+        mLogo = findViewById(R.id.image_home);
 
 
     }

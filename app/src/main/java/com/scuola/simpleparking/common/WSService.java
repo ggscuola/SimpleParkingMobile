@@ -22,7 +22,7 @@ public class WSService {
 
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
-    public final String URL_REQUEST =  "http://172.16.13.162:8082/RestController.php?view=all";
+    public final String URL_REQUEST =  "http://172.16.13.119/service.php?mode=0";
 
 
 
@@ -46,8 +46,7 @@ public class WSService {
 
         GetDataTask task = new GetDataTask();
 
-        String[] param = new String[1];
-        param[0] = URL_REQUEST;
+        String param = URL_REQUEST;
         task.execute(param);
     }
 
