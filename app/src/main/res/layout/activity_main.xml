@@ -1,35 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_height="match_parent"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_15"
+    tools:context="com.scuola.simpleparking.MainActivity">
+
 
     <LinearLayout
-
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context="com.scuola.simpleparking.MainActivity">
-
-
-
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_5">
 
         <TextView
-            android:id="@+id/hello1"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Hello World!"/>
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"/>
+            android:text="Posti disponibili: "
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/posti_disponibili"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@android:color/white"/>
 
 
     </LinearLayout>
 
-</ScrollView>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/padding_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/posto_1"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:id="@+id/posto_2"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:id="@+id/posto_3"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_5"
+        android:orientation="horizontal">
+
+
+
+        <ImageButton
+            android:id="@+id/posto_4"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:id="@+id/posto_5"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:id="@+id/posto_6"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+
+
+        <ImageButton
+            android:id="@+id/posto_7"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:id="@+id/posto_8"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:id="@+id/posto_9"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_5"
+        android:orientation="horizontal">
+
+
+
+        <ImageButton
+            android:id="@+id/posto_10"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:id="@+id/posto_11"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+        <ImageButton
+            android:id="@+id/posto_12"
+            android:layout_width="@dimen/btn_size_width"
+            android:layout_height="@dimen/btn_size_height"
+            android:layout_weight="1"
+            android:background="@drawable/border"
+            android:src="@mipmap/libero" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/image_home"
+        android:layout_width="@dimen/logo_sync"
+        android:layout_height="@dimen/logo_sync"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/logo" />
+
+
+
+
+</LinearLayout>

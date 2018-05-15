@@ -23,9 +23,8 @@ public class JsonParse {
     public final static String COLUMN_CODICE = "codice_prenotazione";
     public final static String COLUMN_TARGA = "targa";
 
-    public static ArrayList<Mappa> parseJsonMap(String result) throws JSONException {
+    public synchronized static ArrayList<Mappa> parseJsonMap(String result) throws JSONException {
         String response = null;
-        JSONObject reader = null;
         JSONArray list = null;
 
 
@@ -33,8 +32,7 @@ public class JsonParse {
 
 
         try {
-            reader = new JSONObject(result);
-            list = reader.getJSONArray("parcheggio");
+            list = new JSONArray(result);
 
 
             for (int x = 0; x < list.length(); x++) {

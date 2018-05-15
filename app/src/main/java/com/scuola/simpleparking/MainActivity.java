@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private final static String TAG = MainActivity.class.getSimpleName();
 
     private ImageView mLogo;
+    public ImageButton mPosto1,mPosto2,mPosto3,mPosto4,mPosto5,mPosto6,mPosto7,mPosto8,mPosto9,mPosto10,mPosto11,mPosto12;
+    public TextView mPostiDisponibili;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +30,15 @@ public class MainActivity extends AppCompatActivity {
 
         getReferences();
 
+        WSService ws = WSService.getInstance();
+        ws.GetRequest(this);
 
         mLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //Intent intent = new Intent(MainActivity.this, SecondaActivity.class);
-                //startActivity(intent);
-
                 WSService ws = WSService.getInstance();
-
                 ws.GetRequest((MainActivity)v.getContext());
-                //Log.i(TAG, "Errore");
-                //Toast.makeText(v.getContext(), "Ciao Marco", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -49,7 +47,21 @@ public class MainActivity extends AppCompatActivity {
     private void getReferences(){
 
         mLogo = findViewById(R.id.image_home);
-
+        mPostiDisponibili = findViewById(R.id.posti_disponibili);
+        mPosto1 = findViewById(R.id.posto_1);
+        mPosto2 = findViewById(R.id.posto_2);
+        mPosto3 = findViewById(R.id.posto_3);
+        mPosto4 = findViewById(R.id.posto_4);
+        mPosto5 = findViewById(R.id.posto_5);
+        mPosto6 = findViewById(R.id.posto_6);
+        mPosto7 = findViewById(R.id.posto_7);
+        mPosto8 = findViewById(R.id.posto_8);
+        mPosto9 = findViewById(R.id.posto_9);
+        mPosto10 = findViewById(R.id.posto_10);
+        mPosto11 = findViewById(R.id.posto_11);
+        mPosto12 = findViewById(R.id.posto_12);
 
     }
+
+
 }
