@@ -210,7 +210,7 @@ public class SplashActivity extends AppCompatActivity{
 
     //faccio l'intent esplicito della attivita principale
     private void goAhead(){
-        final Intent intent = new Intent(this,MainActivity.class);
+        final Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
         finish();
     }

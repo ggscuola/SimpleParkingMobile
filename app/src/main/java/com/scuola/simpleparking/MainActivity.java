@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,10 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = MainActivity.class.getSimpleName();
 
-    private EditText mInput;
-    private TextView mHello1;
-    private Button mButton;
-
+    private ImageView mLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         getReferences();
 
-        mHello1.setText(getString(R.string.app_name));
 
-
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -51,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void getReferences(){
 
-        mHello1 = findViewById(R.id.hello1);
-        mButton = findViewById(R.id.button);
+        mLogo = findViewById(R.id.image_home);
+
 
     }
 }

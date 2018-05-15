@@ -1,11 +1,9 @@
 package com.scuola.simpleparking.common;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.scuola.simpleparking.MainActivity;
 
@@ -24,7 +22,7 @@ public class WSService {
 
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
-    public final String URL_REQUEST =  "http://172.16.13.162:8082/RestController.php?view=all";
+    public final String URL_REQUEST =  "http://172.16.13.119/service.php?mode=0";
 
 
 
@@ -48,8 +46,7 @@ public class WSService {
 
         GetDataTask task = new GetDataTask();
 
-        String[] param = new String[1];
-        param[0] = URL_REQUEST;
+        String param = URL_REQUEST;
         task.execute(param);
     }
 
@@ -118,9 +115,7 @@ public class WSService {
             try{
                 if(result != null)
                 {
-                    //parser
-                    // JSONObject reader = new JSONObject(result);
-                    //  JSONArray list = reader.getJSONArray("");
+                    JsonParse.parseJsonMap(result);
 
                     new Runnable() {
                         @Override
@@ -135,10 +130,13 @@ public class WSService {
             }catch (Exception e)
 
             {
+
                 Log.e(TAG, e.getMessage());
 
             }
         }
+
+
     }
 
 
