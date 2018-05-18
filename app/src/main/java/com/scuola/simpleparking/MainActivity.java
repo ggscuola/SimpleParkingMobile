@@ -2,8 +2,12 @@ package com.scuola.simpleparking;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -45,6 +49,18 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
 
         }
+
+
+        /*ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            try {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+            } catch (Exception e) {
+                Log.d(TAG, "Null Action Bar" + e.getMessage());
+            }
+        }*/
 
         getReferences();
 
@@ -192,7 +208,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.resetTarga) {
+            // do something here
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onResume() {

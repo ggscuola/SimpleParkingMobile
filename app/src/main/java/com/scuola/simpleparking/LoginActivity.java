@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
     private AutoCompleteTextView mTargaView;
     private EditText mPasswordView;
     private ProgressDialogJC mProgressView;
-    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +69,20 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         // Set up the login form.
         mTargaView = (AutoCompleteTextView) findViewById(R.id.email);
-        mTargaView.setText("AB123CD");
+        String targa = null;
+
+        try{
+            //Provo a vedere se ho gia salvato la targa
+            targa = UserRepository.GetTarga(this);
+
+        }catch (Exception e){
+
+            Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        if(targa != null){
+            mTargaView.setText(targa);
+        }
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -93,7 +105,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
         mProgressView = new ProgressDialogJC(this);
     }
 
