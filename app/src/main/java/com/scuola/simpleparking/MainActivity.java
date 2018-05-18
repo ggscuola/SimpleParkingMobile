@@ -63,17 +63,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        /*ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
-            try {
-                actionBar.setDisplayHomeAsUpEnabled(true);
-
-            } catch (Exception e) {
-                Log.d(TAG, "Null Action Bar" + e.getMessage());
-            }
-        }*/
-
         getReferences();
 
         mUIUpdater = new UIUpdater(new Runnable() {

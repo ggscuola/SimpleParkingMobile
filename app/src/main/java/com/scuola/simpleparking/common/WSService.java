@@ -31,7 +31,6 @@ public class WSService {
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
     public final String URL_REQUEST = "http://172.16.13.119/service.php?mode=0";
-    public final String URL_BOOKING = "http://172.16.13.119/service.php?mode=2";
     private ProgressDialogJC mProgressJC;
 
 
@@ -83,6 +82,45 @@ public class WSService {
             uriBuilder.appendQueryParameter("targa", targa);
             uriBuilder.appendQueryParameter("piano", String.valueOf(piano));
             uriBuilder.appendQueryParameter("posto", String.valueOf(posto));
+
+            String url = uriBuilder.toString();
+
+            task.execute(url);
+
+        } catch (Exception e) {
+
+            Log.e(TAG, e.getMessage());
+        }
+
+    }
+
+
+
+    public void CloseBookingRequest(AppCompatActivity activity) {
+        mActivity = (MainActivity) activity;
+
+        CloseBookingTask task = new CloseBookingTask();
+
+        mProgressJC = new ProgressDialogJC(mActivity);
+        mProgressJC.setMessage("Chiusura in corso...");
+        mProgressJC.setSpinnerType(2);
+        mProgressJC.show();
+
+        Uri.Builder uriBuilder = new Uri.Builder();
+        uriBuilder.authority("172.16.13.119");
+        uriBuilder.scheme("http");
+        uriBuilder.path("service.php");
+        uriBuilder.appendQueryParameter("mode", "3");
+        String targa = null;
+        String codice = null;
+
+        try {
+
+            targa = UserRepository.GetTarga(mActivity);
+            uriBuilder.appendQueryParameter("targa", targa);
+
+            codice = UserRepository.GetCodicePrenotazione(mActivity);
+            uriBuilder.appendQueryParameter("codice", codice);
 
             String url = uriBuilder.toString();
 
@@ -362,6 +400,8 @@ public class WSService {
                         //Parserizzo codice di prenotazione
                         ArrayList<String> codicePrenotazione = JsonParse.parseJsonCodPrenotazione(result, mActivity);
 
+                        mProgressJC.dismissWithSuccess("Prenotato!");
+
                         if (codicePrenotazione.get(0) != null) {
 
                             Intent intent = new Intent(mActivity, CloseBookingActivity.class);
@@ -369,12 +409,101 @@ public class WSService {
                             mActivity.finish();
                         }
 
+
+                    } catch (Exception e) {
+
+                        Log.e(TAG, e.getMessage());
+                    }
+
+
+                } else {
+
+                    mProgressJC.dismissWithFailure("0 resulti!");
+                    Toast.makeText(mActivity, "Errore: verificare la connessione con la Raspberry", Toast.LENGTH_LONG).show();
+
+                }
+
+
+            } catch (Exception e)
+
+            {
+                mProgressJC.dismissWithFailure("Errore sincronizzazione!");
+
+                Log.e(TAG, e.getMessage());
+
+            }
+        }
+
+
+    }
+
+
+    @SuppressLint("StaticFieldLeak")
+    private class CloseBookingTask extends AsyncTask<String, Integer, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            OutputStream outputStream;
+            BufferedWriter writer;
+            String result = null;
+
+
+            try {
+                URL url = new URL(strings[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.addRequestProperty("Accept", "application/json");
+                conn.setReadTimeout(2000);
+                conn.setConnectTimeout(2000);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+                conn.setDoOutput(false);
+
+                String line;
+
+                int response = conn.getResponseCode();
+
+
+                if (response == HttpURLConnection.HTTP_OK) {
+
+                    StringBuilder res = new StringBuilder();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        res.append(line);
+                    }
+                    result = res.toString();
+                } else {
+                    final String message = String.valueOf(conn.getResponseCode());
+                    Log.e(TAG, message);
+
+                }
+
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(final String result) {
+            try {
+
+                if (result != null) {
+
+                    try {
+
+                        mProgressJC.dismissWithSuccess("Pronotazione chiusa!");
+
                         new Runnable() {
                             @Override
                             public void run() {
 
-
-                                mProgressJC.dismissWithSuccess("Prenotato!");
+                                Intent intent = new Intent(mActivity, MainActivity.class);
+                                mActivity.startActivity(intent);
+                                mActivity.finish();
                             }
                         }.run();
 
