@@ -12,7 +12,10 @@
     <dimen name="padding_5">5dp</dimen>
     <dimen name="margin_top_5">5dp</dimen>
     <dimen name="margin_top_10">10dp</dimen>
+    <dimen name="margin_top_30">30dp</dimen>
+    <dimen name="margin_top_50">50dp</dimen>
+    <dimen name="margin_top_20">20dp</dimen>
     <dimen name="logo_sync">70dp</dimen>
     <dimen name="size_numero_posto">17dp</dimen>
-
+    <dimen name="size_info_prenotazione_modal">300dp</dimen>
 </resources>

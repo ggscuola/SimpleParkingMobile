@@ -91,4 +91,42 @@ public class UserRepository {
         }
 
     }
+
+
+    public static String GetPianoPrenotato(Context context) throws Exception {
+
+        String pianoPrenotato = null;
+        try {
+
+            SharedPreferences editor = context.getSharedPreferences(context.getResources().getString(R.string.SET), Context.MODE_PRIVATE);
+            pianoPrenotato = editor.getString(context.getResources().getString(R.string.PIANO_PRENOTATO), null);
+
+            return pianoPrenotato;
+
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        }
+
+    }
+
+
+    public static String GetPostoPrenotato(Context context) throws Exception {
+
+        String postoPrenotato = null;
+        try {
+
+            SharedPreferences editor = context.getSharedPreferences(context.getResources().getString(R.string.SET), Context.MODE_PRIVATE);
+            postoPrenotato = editor.getString(context.getResources().getString(R.string.POSTO_PRENOTATO), null);
+
+            return postoPrenotato;
+
+        } catch (Exception e) {
+
+            throw new Exception(e.getMessage());
+
+        }
+
+    }
 }

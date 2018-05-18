@@ -12,6 +12,8 @@ public class CloseBookingActivity extends AppCompatActivity {
     private final static String TAG = CloseBookingActivity.class.getSimpleName();
 
     private TextView mCodicePrenotazione;
+    private TextView mPostoPrenotato;
+    private TextView mPianoPrenotato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +22,23 @@ public class CloseBookingActivity extends AppCompatActivity {
 
 
         mCodicePrenotazione = findViewById(R.id.codice_prenotazione);
+        mPostoPrenotato = findViewById(R.id.posto_prenotato);
+        mPianoPrenotato = findViewById(R.id.piano_prenotato);
 
         String codicePrenotazione = null;
+        String postoPrenotazione = null;
+        String pianoPrenotazione = null;
 
         try{
 
             codicePrenotazione = UserRepository.GetCodicePrenotazione(this);
             mCodicePrenotazione.setText(codicePrenotazione);
+
+            postoPrenotazione = UserRepository.GetPostoPrenotato(this);
+            mPostoPrenotato.setText(postoPrenotazione);
+
+            pianoPrenotazione = UserRepository.GetPianoPrenotato(this);
+            mPianoPrenotato.setText(pianoPrenotazione);
 
         }catch (Exception e){
 
