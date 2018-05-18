@@ -5,7 +5,7 @@
     <!-- Strings related to login -->
     <string name="prompt_targa">Targa</string>
     <string name="prompt_password">Password (opzionale)</string>
-    <string name="action_sign_in">Sign in o Registarti</string>
+    <string name="action_sign_in">Registrati</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>

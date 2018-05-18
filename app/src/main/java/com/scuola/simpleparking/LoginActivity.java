@@ -28,6 +28,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.scuola.simpleparking.common.ProgressDialogJC;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     // UI references.
     private AutoCompleteTextView mTargaView;
     private EditText mPasswordView;
-    private View mProgressView;
+    private ProgressDialogJC mProgressView;
     private View mLoginFormView;
 
     @Override
@@ -90,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+        mProgressView = new ProgressDialogJC(this);
     }
 
 
@@ -136,7 +138,9 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
 
-            //TODO: Show progress
+           mProgressView.setMessage("Registrazione in corso...");
+           mProgressView.setSpinnerType(2);
+           mProgressView.show();
            mAuthTask = new UserLoginTask(targa, password);
             mAuthTask.execute((Void) null);
         }
@@ -147,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
+    @SuppressLint("StaticFieldLeak")
     public class UserLoginTask extends AsyncTask<Void, Void, String> {
 
         private final String mEmail;
@@ -160,7 +165,6 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
 
             String response = null;
 
@@ -192,7 +196,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final String response) {
             mAuthTask = null;
-            //TODO: Hide progress
+            mProgressView.dismiss();
 
             if (response != null) {
                 finish();
@@ -209,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onCancelled() {
             mAuthTask = null;
-            //TODO: Hide progress
+            mProgressView.dismissWithFailure("Richiesta di registrazione cancellata!");
         }
     }
 }
