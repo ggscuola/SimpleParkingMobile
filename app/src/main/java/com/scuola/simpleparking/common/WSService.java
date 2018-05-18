@@ -242,8 +242,8 @@ public class WSService {
 
                 }else {
 
-                    mProgressJC.dismissWithSuccess("0 resulti!");
-                    Toast.makeText(mActivity, "Verificare connessione con la Raspberry", Toast.LENGTH_LONG).show();
+                    mProgressJC.dismissWithFailure("0 resulti!");
+                    Toast.makeText(mActivity, "Errore: verificare la connessione con la Raspberry", Toast.LENGTH_LONG).show();
 
                 }
 
