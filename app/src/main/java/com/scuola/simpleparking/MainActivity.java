@@ -45,6 +45,131 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+        /* GESTIONE EVENTI ON CLICK DEI SINGOLI POSTI */
+
+
+        //Posto 1 Piano 1
+        mPosto1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 1 Piano 1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 2 Piano 1
+        mPosto2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 2 Piano 1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 3 Piano 1
+        mPosto3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 3 Piano 1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 4 Piano 1
+        mPosto4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 4 Piano 1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 5 Piano 1
+        mPosto5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 5 Piano 1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 6 Piano 1
+        mPosto6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 6 Piano 1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 1 Piano 2
+        mPosto7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 1 Piano 2", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 2 Piano 2
+        mPosto8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 2 Piano 2", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 3 Piano 2
+        mPosto9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 3 Piano 2", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 4 Piano 2
+        mPosto10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 4 Piano 2", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 5 Piano 2
+        mPosto11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 5 Piano 2", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Posto 6 Piano 2
+        mPosto12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(view.getContext(), "Posto 6 Piano 2", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
