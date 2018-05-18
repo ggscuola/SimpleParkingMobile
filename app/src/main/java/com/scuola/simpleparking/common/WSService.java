@@ -37,6 +37,7 @@ public class WSService {
     private static WSService mIstance;
 
     private MainActivity mActivity = null;
+    private CloseBookingActivity mActivityClose = null;
 
     public static WSService getInstance() {
         if (mIstance == null) {
@@ -97,11 +98,11 @@ public class WSService {
 
 
     public void CloseBookingRequest(AppCompatActivity activity) {
-        mActivity = (MainActivity) activity;
+        mActivityClose = (CloseBookingActivity) activity;
 
         CloseBookingTask task = new CloseBookingTask();
 
-        mProgressJC = new ProgressDialogJC(mActivity);
+        mProgressJC = new ProgressDialogJC(mActivityClose);
         mProgressJC.setMessage("Chiusura in corso...");
         mProgressJC.setSpinnerType(2);
         mProgressJC.show();
@@ -116,10 +117,10 @@ public class WSService {
 
         try {
 
-            targa = UserRepository.GetTarga(mActivity);
+            targa = UserRepository.GetTarga(mActivityClose);
             uriBuilder.appendQueryParameter("targa", targa);
 
-            codice = UserRepository.GetCodicePrenotazione(mActivity);
+            codice = UserRepository.GetCodicePrenotazione(mActivityClose);
             uriBuilder.appendQueryParameter("codice", codice);
 
             String url = uriBuilder.toString();
@@ -501,9 +502,9 @@ public class WSService {
                             @Override
                             public void run() {
 
-                                Intent intent = new Intent(mActivity, MainActivity.class);
-                                mActivity.startActivity(intent);
-                                mActivity.finish();
+                                Intent intent = new Intent(mActivityClose, MainActivity.class);
+                                mActivityClose.startActivity(intent);
+                                mActivityClose.finish();
                             }
                         }.run();
 
@@ -517,7 +518,7 @@ public class WSService {
                 } else {
 
                     mProgressJC.dismissWithFailure("0 resulti!");
-                    Toast.makeText(mActivity, "Errore: verificare la connessione con la Raspberry", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mActivityClose, "Errore: verificare la connessione con la Raspberry", Toast.LENGTH_LONG).show();
 
                 }
 
