@@ -2,14 +2,7 @@ package com.scuola.simpleparking.common;
 import android.os.Handler;
 import android.os.Looper;
 
-/**
- * A class used to perform periodical updates,
- * specified inside a runnable object. An update interval
- * may be specified (otherwise, the class will perform the 
- * update every 2 seconds).
- *
- * @author Carlos Simões
- */
+
 public class UIUpdater {
     // Create a Handler that uses the Main Looper to run in
     private Handler mHandler = new Handler(Looper.getMainLooper());
