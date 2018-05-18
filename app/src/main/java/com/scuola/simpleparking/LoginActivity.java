@@ -27,8 +27,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.scuola.simpleparking.common.ProgressDialogJC;
+import com.scuola.simpleparking.common.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -199,13 +201,22 @@ public class LoginActivity extends AppCompatActivity {
             mProgressView.dismiss();
 
             if (response != null) {
-                finish();
-                overridePendingTransition(0,R.anim.animation_back_intent);
 
-                //creo nuova istanza di tipo intent e gli dico da dove a dove andare
-                Intent intent =new Intent (LoginActivity.this, MainActivity.class);
-                // faccio partitre l'intent appena creata
-                startActivity(intent);
+                try{
+                    UserRepository.SetTarga(response, LoginActivity.this);
+
+                    //creo nuova istanza di tipo intent e gli dico da dove a dove andare
+                    Intent intent =new Intent (LoginActivity.this, MainActivity.class);
+                    // faccio partitre l'intent appena creata
+                    startActivity(intent);
+                    finish();
+
+                }catch (Exception e){
+
+                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
+
 
             }
         }

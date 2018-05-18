@@ -1,5 +1,6 @@
 package com.scuola.simpleparking;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.scuola.simpleparking.common.UIUpdater;
+import com.scuola.simpleparking.common.UserRepository;
 import com.scuola.simpleparking.common.WSService;
 
 
@@ -25,6 +27,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String targa = null;
+
+        try{
+
+             targa = UserRepository.GetTarga(this);
+
+             if(targa == null){
+                 finish();
+                 Intent intent = new Intent(this, LoginActivity.class);
+                 startActivity(intent);
+             }
+
+        }catch (Exception e){
+
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+
+        }
 
         getReferences();
 
