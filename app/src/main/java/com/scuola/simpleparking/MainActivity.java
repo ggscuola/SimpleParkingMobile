@@ -17,6 +17,8 @@ import com.scuola.simpleparking.common.UIUpdater;
 import com.scuola.simpleparking.common.UserRepository;
 import com.scuola.simpleparking.common.WSService;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,16 +35,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String targa = null;
+        String codicePrenotazione = null;
 
         try{
 
              targa = UserRepository.GetTarga(this);
 
              if(targa == null){
-                 finish();
                  Intent intent = new Intent(this, LoginActivity.class);
                  startActivity(intent);
+                 finish();
              }
+
+
+            codicePrenotazione = UserRepository.GetCodicePrenotazione(this);
+
+            if(codicePrenotazione != null){
+                Intent intent = new Intent(MainActivity.this, CloseBookingActivity.class);
+                startActivity(intent);
+                finish();
+            }
 
         }catch (Exception e){
 
@@ -92,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 1 Piano 1", Toast.LENGTH_SHORT).show();
+                BookNow(1,1);
             }
         });
 
@@ -102,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 2 Piano 1", Toast.LENGTH_SHORT).show();
+                BookNow(2,1);
             }
         });
 
@@ -112,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 3 Piano 1", Toast.LENGTH_SHORT).show();
+                BookNow(3,1);
             }
         });
 
@@ -122,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 4 Piano 1", Toast.LENGTH_SHORT).show();
+                BookNow(4,1);
             }
         });
 
@@ -132,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 5 Piano 1", Toast.LENGTH_SHORT).show();
+                BookNow(4,1);
             }
         });
 
@@ -142,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 6 Piano 1", Toast.LENGTH_SHORT).show();
+                BookNow(5,1);
             }
         });
 
@@ -152,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 1 Piano 2", Toast.LENGTH_SHORT).show();
+                BookNow(1,2);
             }
         });
 
@@ -162,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 2 Piano 2", Toast.LENGTH_SHORT).show();
+                BookNow(2,2);
             }
         });
 
@@ -172,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 3 Piano 2", Toast.LENGTH_SHORT).show();
+                BookNow(3,2);
             }
         });
 
@@ -182,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 4 Piano 2", Toast.LENGTH_SHORT).show();
+                BookNow(4,2);
             }
         });
 
@@ -192,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 5 Piano 2", Toast.LENGTH_SHORT).show();
+                BookNow(5,2);
             }
         });
 
@@ -202,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(view.getContext(), "Posto 6 Piano 2", Toast.LENGTH_SHORT).show();
+                BookNow(6,2);
             }
         });
 
@@ -243,6 +255,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Stop updates
         mUIUpdater.stopUpdates();
+    }
+
+
+    private void BookNow(int posto, int piano){
+
+        WSService ws = WSService.getInstance();
+        ws.BookingRequest(this, posto, piano);
     }
 
     private void getReferences(){

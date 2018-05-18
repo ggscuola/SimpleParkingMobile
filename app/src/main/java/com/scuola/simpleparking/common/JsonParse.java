@@ -1,6 +1,7 @@
 package com.scuola.simpleparking.common;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.scuola.simpleparking.MainActivity;
@@ -19,9 +20,8 @@ public class JsonParse {
 
     public final static String COLUMN_POSTO = "posto";
     public final static String COLUMN_STATO = "stato";
-    public final static String COLUMN_PIANO= "piano";
+    public final static String COLUMN_PIANO = "piano";
     public final static String COLUMN_CODICE = "codice_prenotazione";
-    public final static String COLUMN_TARGA = "targa";
 
     public synchronized static ArrayList<Mappa> parseJsonMap(String result) throws JSONException {
         String response = null;
@@ -41,7 +41,7 @@ public class JsonParse {
                 int stato = li.getInt(COLUMN_STATO);
                 int piano = li.getInt(COLUMN_PIANO);
 
-                Mappa map = new Mappa (posto,stato,piano);
+                Mappa map = new Mappa(posto, stato, piano);
                 mArray.add(map);
             }
 
@@ -58,11 +58,10 @@ public class JsonParse {
     }
 
 
+    public synchronized static ArrayList<String> parseJsonCodPrenotazione(String result, AppCompatActivity activity) throws JSONException {
 
-    public static boolean parseJsonCodPrenotazione(String result) throws JSONException {
-        boolean response = false;
+        ArrayList<String> response = new ArrayList<>();
         JSONObject reader = null;
-
 
 
         try {
@@ -73,16 +72,23 @@ public class JsonParse {
             int posto = reader.getInt(COLUMN_POSTO);
             int piano = reader.getInt(COLUMN_PIANO);
 
+            //Posizione 0
+            response.add(codice);
+            //Posizione 1
+            response.add(String.valueOf(posto));
+            //Posizione 2
+            response.add(String.valueOf(piano));
 
+            //Salvo le info di prenotazione
+            UserRepository.SetInfoPrenotazione(response, activity);
 
 
         } catch (Exception e) {
-            Log.e(TAG, "insertJsonDataCodifica:" + e.getMessage());
-            response = false;
-
 
             throw new JSONException(e.getMessage());
         }
+
+
 
         return response;
     }

@@ -28,4 +28,7 @@
 
     <string name="SET">SET</string>
     <string name="TARGA">TARGA</string>
+    <string name="CODICE_PRENOTAZIONE">CODICE</string>
+    <string name="POSTO_PRENOTATO">POSTO</string>
+    <string name="PIANO_PRENOTATO">PIANO</string>
 </resources>

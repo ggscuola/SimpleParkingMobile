@@ -3,11 +3,14 @@ package com.scuola.simpleparking.common;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.scuola.simpleparking.CloseBookingActivity;
 import com.scuola.simpleparking.MainActivity;
 import com.scuola.simpleparking.R;
 
@@ -28,6 +31,7 @@ public class WSService {
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
     public final String URL_REQUEST = "http://172.16.13.119/service.php?mode=0";
+    public final String URL_BOOKING = "http://172.16.13.119/service.php?mode=2";
     private ProgressDialogJC mProgressJC;
 
 
@@ -53,6 +57,42 @@ public class WSService {
         mProgressJC.setSpinnerType(2);
         mProgressJC.show();
         task.execute(URL_REQUEST);
+    }
+
+
+    public void BookingRequest(AppCompatActivity activity, int posto, int piano) {
+        mActivity = (MainActivity) activity;
+
+        BookingTask task = new BookingTask();
+
+        mProgressJC = new ProgressDialogJC(mActivity);
+        mProgressJC.setMessage("Prenotazione in corso...");
+        mProgressJC.setSpinnerType(2);
+        mProgressJC.show();
+
+        Uri.Builder uriBuilder = new Uri.Builder();
+        uriBuilder.authority("172.16.13.119");
+        uriBuilder.scheme("http");
+        uriBuilder.path("service.php");
+        uriBuilder.appendQueryParameter("mode", "2");
+        String targa = null;
+
+        try {
+
+            targa = UserRepository.GetTarga(mActivity);
+            uriBuilder.appendQueryParameter("targa", targa);
+            uriBuilder.appendQueryParameter("piano", String.valueOf(piano));
+            uriBuilder.appendQueryParameter("posto", String.valueOf(posto));
+
+            String url = uriBuilder.toString();
+
+            task.execute(url);
+
+        } catch (Exception e) {
+
+            Log.e(TAG, e.getMessage());
+        }
+
     }
 
 
@@ -240,7 +280,112 @@ public class WSService {
                         }
                     }.run();
 
-                }else {
+                } else {
+
+                    mProgressJC.dismissWithFailure("0 resulti!");
+                    Toast.makeText(mActivity, "Errore: verificare la connessione con la Raspberry", Toast.LENGTH_LONG).show();
+
+                }
+
+
+            } catch (Exception e)
+
+            {
+                mProgressJC.dismissWithFailure("Errore sincronizzazione!");
+
+                Log.e(TAG, e.getMessage());
+
+            }
+        }
+
+
+    }
+
+
+    @SuppressLint("StaticFieldLeak")
+    private class BookingTask extends AsyncTask<String, Integer, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            OutputStream outputStream;
+            BufferedWriter writer;
+            String result = null;
+
+
+            try {
+                URL url = new URL(strings[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.addRequestProperty("Accept", "application/json");
+                conn.setReadTimeout(2000);
+                conn.setConnectTimeout(2000);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+                conn.setDoOutput(false);
+
+                String line;
+
+                int response = conn.getResponseCode();
+
+
+                if (response == HttpURLConnection.HTTP_OK) {
+
+                    StringBuilder res = new StringBuilder();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        res.append(line);
+                    }
+                    result = res.toString();
+                } else {
+                    final String message = String.valueOf(conn.getResponseCode());
+                    Log.e(TAG, message);
+
+                }
+
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(final String result) {
+            try {
+
+
+                if (result != null) {
+
+                    try {
+                        //Parserizzo codice di prenotazione
+                        ArrayList<String> codicePrenotazione = JsonParse.parseJsonCodPrenotazione(result, mActivity);
+
+                        if (codicePrenotazione.get(0) != null) {
+
+                            Intent intent = new Intent(mActivity, CloseBookingActivity.class);
+                            mActivity.startActivity(intent);
+                            mActivity.finish();
+                        }
+
+                        new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                mProgressJC.dismissWithSuccess("Prenotato!");
+                            }
+                        }.run();
+
+
+                    } catch (Exception e) {
+
+                        Log.e(TAG, e.getMessage());
+                    }
+
+
+                } else {
 
                     mProgressJC.dismissWithFailure("0 resulti!");
                     Toast.makeText(mActivity, "Errore: verificare la connessione con la Raspberry", Toast.LENGTH_LONG).show();
