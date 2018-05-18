@@ -28,7 +28,7 @@ public class WSService {
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
     public final String URL_REQUEST = "http://172.16.13.119/service.php?mode=0";
-    private ProgressDialog mProgress;
+    private ProgressDialogJC mProgressJC;
 
 
     private static WSService mIstance;
@@ -48,8 +48,10 @@ public class WSService {
 
         GetDataTask task = new GetDataTask();
 
-        mProgress = ProgressDialog.show(mActivity, "Sincronizzazione",
-                "Attendere...", true);
+        mProgressJC = new ProgressDialogJC(mActivity);
+        mProgressJC.setMessage("Sincronizzazione in corso...");
+        mProgressJC.setSpinnerType(2);
+        mProgressJC.show();
         task.execute(URL_REQUEST);
     }
 
@@ -107,9 +109,10 @@ public class WSService {
         protected void onPostExecute(final String result) {
             try {
 
-                mProgress.dismiss();
 
                 if (result != null) {
+
+
                     final ArrayList<Mappa> mappa = JsonParse.parseJsonMap(result);
 
                     new Runnable() {
@@ -232,10 +235,15 @@ public class WSService {
 
                             }
 
+                            mProgressJC.dismissWithSuccess("Sincronizzato!");
                             mActivity.mPostiDisponibili.setText(String.valueOf(postiDipsonibili));
-                            Toast.makeText(mActivity, "Sincronizzato", Toast.LENGTH_SHORT).show();
                         }
                     }.run();
+
+                }else {
+
+                    mProgressJC.dismissWithSuccess("0 resulti!");
+                    Toast.makeText(mActivity, "Verificare connessione con la Raspberry", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -243,6 +251,7 @@ public class WSService {
             } catch (Exception e)
 
             {
+                mProgressJC.dismissWithFailure("Errore sincronizzazione!");
 
                 Log.e(TAG, e.getMessage());
 

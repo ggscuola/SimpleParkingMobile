@@ -11,6 +11,8 @@
     <dimen name="padding_15">15dp</dimen>
     <dimen name="padding_5">5dp</dimen>
     <dimen name="margin_top_5">5dp</dimen>
+    <dimen name="margin_top_10">10dp</dimen>
     <dimen name="logo_sync">70dp</dimen>
+    <dimen name="size_numero_posto">17dp</dimen>
 
 </resources>

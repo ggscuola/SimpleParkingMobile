@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">SimpleParking</string>
-    <string name="mkmk">ndjnfjnjnd</string>
+    <string name="app_name">Simple Parking</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -15,4 +14,17 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string name="primo_piano">PRIMO PIANO</string>
+    <string name="secondo_piano">SECONDO PIANO</string>
+    <string name="primo_posto">1</string>
+    <string name="secondo_posto">2</string>
+    <string name="terzo_posto">3</string>
+    <string name="quarto_posto">4</string>
+    <string name="quinto_posto">5</string>
+    <string name="sesto_posto">6</string>
+    <string name="progress_dialog">Progress Dialog Sincronizzazione</string>
+    <string name="sync_in_corso">Sincronizzazione in corso&#8230;</string>
+    <string name="gruppo_sviluppo">Powered by IT Group</string>
+
 </resources>

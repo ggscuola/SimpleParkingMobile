@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".SecondaActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Fullscreen">
@@ -27,7 +26,9 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login">
+
+        </activity>
     </application>
 
 </manifest>
