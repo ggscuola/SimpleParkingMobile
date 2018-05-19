@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                BookNow(4,1);
+                BookNow(5,1);
             }
         });
 
@@ -143,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                BookNow(5,1);
+
+                BookNow(6,1);
             }
         });
 

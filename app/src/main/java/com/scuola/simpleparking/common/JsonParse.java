@@ -61,16 +61,26 @@ public class JsonParse {
     public synchronized static ArrayList<String> parseJsonCodPrenotazione(String result, AppCompatActivity activity) throws JSONException {
 
         ArrayList<String> response = new ArrayList<>();
-        JSONObject reader = null;
+        JSONArray list = null;
 
 
         try {
-            reader = new JSONObject(result);
+            //TODO: JSon attenzione!!!
+            list = new JSONArray(result);
+            String myCod = UserRepository.GetCodicePrenotazione(activity);
 
+            if(myCod == null){
+                myCod = "";
+            }
 
-            String codice = reader.getString(COLUMN_CODICE);
-            int posto = reader.getInt(COLUMN_POSTO);
-            int piano = reader.getInt(COLUMN_PIANO);
+            String codice = list.optJSONObject(0).getString(COLUMN_CODICE);
+
+            if(codice.isEmpty() || codice.equals(myCod)){
+                return response;
+            }
+
+            int posto = list.optJSONObject(0).getInt(COLUMN_POSTO);
+            int piano =  list.optJSONObject(0).getInt(COLUMN_PIANO);
 
             //Posizione 0
             response.add(codice);

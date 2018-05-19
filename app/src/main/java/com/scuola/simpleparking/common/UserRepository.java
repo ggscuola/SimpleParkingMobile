@@ -78,9 +78,17 @@ public class UserRepository {
         try {
             SharedPreferences editor = context.getSharedPreferences(context.getResources().getString(R.string.SET), Context.MODE_PRIVATE);
 
-            editor.edit().putString(context.getResources().getString(R.string.CODICE_PRENOTAZIONE), codice.get(0)).apply();
-            editor.edit().putString(context.getResources().getString(R.string.POSTO_PRENOTATO), codice.get(1)).apply();
-            editor.edit().putString(context.getResources().getString(R.string.PIANO_PRENOTATO), codice.get(2)).apply();
+            if(codice != null){
+
+                editor.edit().putString(context.getResources().getString(R.string.CODICE_PRENOTAZIONE), codice.get(0)).apply();
+                editor.edit().putString(context.getResources().getString(R.string.POSTO_PRENOTATO), codice.get(1)).apply();
+                editor.edit().putString(context.getResources().getString(R.string.PIANO_PRENOTATO), codice.get(2)).apply();
+            }else{
+                editor.edit().putString(context.getResources().getString(R.string.CODICE_PRENOTAZIONE), null).apply();
+                editor.edit().putString(context.getResources().getString(R.string.POSTO_PRENOTATO), null).apply();
+                editor.edit().putString(context.getResources().getString(R.string.PIANO_PRENOTATO), null).apply();
+            }
+
 
             editor.edit().apply();
 

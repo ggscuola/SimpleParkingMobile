@@ -31,6 +31,8 @@ public class WSService {
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
     public final String URL_REQUEST = "http://172.16.13.119/service.php?mode=0";
+    public final String URL_REQUEST1 = "http://192.168.1.10/service.php?mode=0";
+
     private ProgressDialogJC mProgressJC;
 
 
@@ -56,7 +58,7 @@ public class WSService {
         mProgressJC.setMessage("Sincronizzazione in corso...");
         mProgressJC.setSpinnerType(2);
         mProgressJC.show();
-        task.execute(URL_REQUEST);
+        task.execute(URL_REQUEST1);
     }
 
 
@@ -71,7 +73,8 @@ public class WSService {
         mProgressJC.show();
 
         Uri.Builder uriBuilder = new Uri.Builder();
-        uriBuilder.authority("172.16.13.119");
+        //uriBuilder.authority("172.16.13.119");
+        uriBuilder.authority("192.168.1.10");
         uriBuilder.scheme("http");
         uriBuilder.path("service.php");
         uriBuilder.appendQueryParameter("mode", "2");
@@ -108,7 +111,9 @@ public class WSService {
         mProgressJC.show();
 
         Uri.Builder uriBuilder = new Uri.Builder();
-        uriBuilder.authority("172.16.13.119");
+        //uriBuilder.authority("172.16.13.119");
+        uriBuilder.authority("192.168.1.10");
+
         uriBuilder.scheme("http");
         uriBuilder.path("service.php");
         uriBuilder.appendQueryParameter("mode", "3");
@@ -401,18 +406,26 @@ public class WSService {
                         //Parserizzo codice di prenotazione
                         ArrayList<String> codicePrenotazione = JsonParse.parseJsonCodPrenotazione(result, mActivity);
 
-                        mProgressJC.dismissWithSuccess("Prenotato!");
+                        if(codicePrenotazione.size() > 0){
+                            mProgressJC.dismissWithSuccess("Prenotato!");
 
-                        if (codicePrenotazione.get(0) != null) {
+                            if (codicePrenotazione.get(0) != null) {
 
-                            Intent intent = new Intent(mActivity, CloseBookingActivity.class);
-                            mActivity.startActivity(intent);
-                            mActivity.finish();
+                                Intent intent = new Intent(mActivity, CloseBookingActivity.class);
+                                mActivity.startActivity(intent);
+                                mActivity.finish();
+                            }
+                        }else {
+
+                            mProgressJC.dismissWithFailure("Posto già prenotato!");
+
                         }
+
 
 
                     } catch (Exception e) {
 
+                        mProgressJC.dismissWithFailure("Errore!");
                         Log.e(TAG, e.getMessage());
                     }
 
@@ -497,6 +510,7 @@ public class WSService {
                     try {
 
                         mProgressJC.dismissWithSuccess("Pronotazione chiusa!");
+                        UserRepository.SetInfoPrenotazione(null, mActivityClose);
 
                         new Runnable() {
                             @Override
