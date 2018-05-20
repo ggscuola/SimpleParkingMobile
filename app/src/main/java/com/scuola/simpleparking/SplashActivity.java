@@ -11,8 +11,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.scuola.simpleparking.R;
+import com.scuola.simpleparking.common.UserRepository;
+import com.scuola.simpleparking.common.WSService;
 
 import java.lang.ref.WeakReference;
 
@@ -210,8 +213,19 @@ public class SplashActivity extends AppCompatActivity{
 
     //faccio l'intent esplicito della attivita principale
     private void goAhead(){
-        final Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        finish();
+
+
+        try{
+            String targa = UserRepository.GetTarga(this);
+
+            //Verifico se è gia stato prenotato un posto con la mia targa (es. da portale Web)
+            WSService ws = WSService.getInstance();
+            ws.CheckBooking(SplashActivity.this, targa);
+
+        }catch (Exception e){
+
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
     }
 }

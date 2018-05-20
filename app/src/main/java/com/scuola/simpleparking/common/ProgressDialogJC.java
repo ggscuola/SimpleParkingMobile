@@ -102,7 +102,7 @@ public class ProgressDialogJC extends Dialog {
     }
 
     public void dismissWithSuccess() {
-        tvMessage.setText("Success");
+        tvMessage.setText("Ok");
         showSuccessImage();
 
         if (onDialogDismiss != null) {
@@ -114,7 +114,7 @@ public class ProgressDialogJC extends Dialog {
                 }
             });
         }
-        dismissHUD();
+        dismissDialogJC();
     }
 
     public void dismissWithSuccess(String message) {
@@ -134,12 +134,12 @@ public class ProgressDialogJC extends Dialog {
                 }
             });
         }
-        dismissHUD();
+        dismissDialogJC();
     }
 
     public void dismissWithFailure() {
         showFailureImage();
-        tvMessage.setText("Failure");
+        tvMessage.setText("Errore generico");
         if (onDialogDismiss != null) {
             this.setOnDismissListener(new OnDismissListener() {
 
@@ -149,7 +149,7 @@ public class ProgressDialogJC extends Dialog {
                 }
             });
         }
-        dismissHUD();
+        dismissDialogJC();
     }
 
     public void dismissWithFailure(String message) {
@@ -168,7 +168,7 @@ public class ProgressDialogJC extends Dialog {
                 }
             });
         }
-        dismissHUD();
+        dismissDialogJC();
     }
 
     protected void showSuccessImage() {
@@ -188,7 +188,7 @@ public class ProgressDialogJC extends Dialog {
         tvMessage.setText("Loading ...");
     }
 
-    protected void dismissHUD() {
+    protected void dismissDialogJC() {
         @SuppressLint("StaticFieldLeak")
         AsyncTask<String, Integer, Long> task = new AsyncTask<String, Integer, Long>() {
 

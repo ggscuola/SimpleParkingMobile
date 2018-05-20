@@ -65,7 +65,6 @@ public class JsonParse {
 
 
         try {
-            //TODO: JSon attenzione!!!
             list = new JSONArray(result);
             String myCod = UserRepository.GetCodicePrenotazione(activity);
 

@@ -48,13 +48,6 @@ public class MainActivity extends AppCompatActivity {
              }
 
 
-            codicePrenotazione = UserRepository.GetCodicePrenotazione(this);
-
-            if(codicePrenotazione != null){
-                Intent intent = new Intent(MainActivity.this, CloseBookingActivity.class);
-                startActivity(intent);
-                finish();
-            }
 
         }catch (Exception e){
 

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.scuola.simpleparking.CloseBookingActivity;
 import com.scuola.simpleparking.MainActivity;
 import com.scuola.simpleparking.R;
+import com.scuola.simpleparking.SplashActivity;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -31,7 +32,7 @@ public class WSService {
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
     public final String URL_REQUEST = "http://172.16.13.119/service.php?mode=0";
-    public final String URL_REQUEST1 = "http://192.168.1.10/service.php?mode=0";
+    public final String URL_REQUEST1 = "http://192.168.1.6/service.php?mode=0";
 
     private ProgressDialogJC mProgressJC;
 
@@ -39,6 +40,7 @@ public class WSService {
     private static WSService mIstance;
 
     private MainActivity mActivity = null;
+    private SplashActivity mActivitySplash = null;
     private CloseBookingActivity mActivityClose = null;
 
     public static WSService getInstance() {
@@ -74,7 +76,7 @@ public class WSService {
 
         Uri.Builder uriBuilder = new Uri.Builder();
         //uriBuilder.authority("172.16.13.119");
-        uriBuilder.authority("192.168.1.10");
+        uriBuilder.authority("192.168.1.6");
         uriBuilder.scheme("http");
         uriBuilder.path("service.php");
         uriBuilder.appendQueryParameter("mode", "2");
@@ -99,7 +101,6 @@ public class WSService {
     }
 
 
-
     public void CloseBookingRequest(AppCompatActivity activity) {
         mActivityClose = (CloseBookingActivity) activity;
 
@@ -112,7 +113,7 @@ public class WSService {
 
         Uri.Builder uriBuilder = new Uri.Builder();
         //uriBuilder.authority("172.16.13.119");
-        uriBuilder.authority("192.168.1.10");
+        uriBuilder.authority("192.168.1.6");
 
         uriBuilder.scheme("http");
         uriBuilder.path("service.php");
@@ -136,6 +137,135 @@ public class WSService {
 
             Log.e(TAG, e.getMessage());
         }
+
+    }
+
+
+    public void CheckBooking(AppCompatActivity activity, String targa) {
+
+        mActivitySplash = (SplashActivity) activity;
+
+        CheckBookingTask task = new CheckBookingTask();
+
+        Uri.Builder uriBuilder = new Uri.Builder();
+        //uriBuilder.authority("172.16.13.119");
+        uriBuilder.authority("192.168.1.6");
+        uriBuilder.scheme("http");
+        uriBuilder.path("service.php");
+        uriBuilder.appendQueryParameter("mode", "1");
+
+        try {
+
+            uriBuilder.appendQueryParameter("targa", targa);
+
+            String url = uriBuilder.toString();
+
+            task.execute(url);
+
+        } catch (Exception e) {
+
+            Log.e(TAG, e.getMessage());
+        }
+
+    }
+
+
+    @SuppressLint("StaticFieldLeak")
+    private class CheckBookingTask extends AsyncTask<String, Integer, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            OutputStream outputStream;
+            BufferedWriter writer;
+            String result = null;
+
+
+            try {
+                URL url = new URL(strings[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.addRequestProperty("Accept", "application/json");
+                conn.setReadTimeout(2000);
+                conn.setConnectTimeout(2000);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+                conn.setDoOutput(false);
+
+                String line;
+
+                int response = conn.getResponseCode();
+
+
+                if (response == HttpURLConnection.HTTP_OK) {
+
+                    StringBuilder res = new StringBuilder();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    while ((line = bufferedReader.readLine()) != null) {
+                        res.append(line);
+                    }
+                    result = res.toString();
+                } else {
+                    final String message = String.valueOf(conn.getResponseCode());
+                    Log.e(TAG, message);
+
+                }
+
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(final String result) {
+            try {
+
+
+                if (result != null) {
+
+                    try {
+                        //Parserizzo codice di prenotazione
+                        ArrayList<String> codicePrenotazione = JsonParse.parseJsonCodPrenotazione(result, mActivitySplash);
+
+                        Intent intent = null;
+                        if (codicePrenotazione.size() > 0) {
+
+                            if (codicePrenotazione.get(0) != null) {
+
+                                intent = new Intent(mActivitySplash, CloseBookingActivity.class);
+
+                            }
+                        }else {
+
+                            intent = new Intent(mActivitySplash, MainActivity.class);
+                        }
+
+                        mActivitySplash.startActivity(intent);
+                        mActivitySplash.finish();
+
+                    } catch (Exception e) {
+
+                        Log.e(TAG, e.getMessage());
+                    }
+
+
+                } else {
+
+                    Toast.makeText(mActivitySplash, "Errore: verificare la connessione con la Raspberry", Toast.LENGTH_LONG).show();
+
+                }
+            } catch (Exception e)
+
+            {
+
+                Log.e(TAG, e.getMessage());
+
+            }
+        }
+
 
     }
 
@@ -406,7 +536,7 @@ public class WSService {
                         //Parserizzo codice di prenotazione
                         ArrayList<String> codicePrenotazione = JsonParse.parseJsonCodPrenotazione(result, mActivity);
 
-                        if(codicePrenotazione.size() > 0){
+                        if (codicePrenotazione.size() > 0) {
                             mProgressJC.dismissWithSuccess("Prenotato!");
 
                             if (codicePrenotazione.get(0) != null) {
@@ -415,12 +545,11 @@ public class WSService {
                                 mActivity.startActivity(intent);
                                 mActivity.finish();
                             }
-                        }else {
+                        } else {
 
                             mProgressJC.dismissWithFailure("Posto già prenotato!");
 
                         }
-
 
 
                     } catch (Exception e) {
