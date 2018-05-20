@@ -1,443 +1,444 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/black"
     android:orientation="vertical"
-    android:padding="@dimen/padding_15"
     tools:context="com.scuola.simpleparking.MainActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_5">
+        android:orientation="vertical"
+        android:padding="@dimen/padding_15">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Posti disponibili: "
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/posti_disponibili"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Posti disponibili: "
-            android:textColor="@android:color/white"/>
+            android:layout_marginTop="@dimen/margin_top_10"
+            android:background="@android:color/white"
+            android:text="@string/primo_piano"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/primo_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/secondo_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/terzo_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_5"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/quarto_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/quinto_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/sesto_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
 
         <TextView
-            android:id="@+id/posti_disponibili"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@android:color/white"/>
-
-
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_marginTop="@dimen/margin_top_10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/primo_piano"
-        android:background="@android:color/white"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-            
-            
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/primo_posto"
-                android:background="@drawable/numero_posto"
-                android:layout_gravity="bottom|end"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/secondo_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/terzo_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_top_5"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-
-
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_4"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/quarto_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_5"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/quinto_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_6"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/sesto_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-
-
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/secondo_piano"
-        android:background="@android:color/white"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-
-
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_7"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/primo_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_8"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/secondo_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_9"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/terzo_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_top_5"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_10"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/quarto_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_11"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/quinto_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-
-        <FrameLayout
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:id="@+id/posto_12"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_size_height"
-                android:background="@drawable/border"
-                android:src="@mipmap/libero"
-                android:contentDescription="@string/primo_piano" />
-
-
-            <TextView
-                android:layout_width="@dimen/size_numero_posto"
-                android:layout_height="@dimen/size_numero_posto"
-                android:text="@string/sesto_posto"
-                android:layout_gravity="bottom|end"
-                android:background="@drawable/numero_posto"
-                android:elevation="3dp"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
-
-        </FrameLayout>
-
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_marginTop="@dimen/padding_15"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@android:color/white"
+            android:text="@string/secondo_piano"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/gruppo_sviluppo"
-            android:textColor="@android:color/white"
-            android:layout_gravity="center"/>
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/force_refresh"
-            android:layout_width="wrap_content"
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_7"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/primo_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_8"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/secondo_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_9"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/terzo_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:src="@android:drawable/stat_notify_sync"
-            app:backgroundTint="@color/colorPrimary"
-            app:fabSize="normal"/>
-    </FrameLayout>
+            android:layout_marginTop="@dimen/margin_top_5"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
 
-</LinearLayout>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_10"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/quarto_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_11"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/quinto_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/posto_12"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_size_height"
+                    android:background="@drawable/border"
+                    android:contentDescription="@string/primo_piano"
+                    android:src="@mipmap/libero" />
+
+
+                <TextView
+                    android:layout_width="@dimen/size_numero_posto"
+                    android:layout_height="@dimen/size_numero_posto"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/numero_posto"
+                    android:elevation="3dp"
+                    android:text="@string/sesto_posto"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
+
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_15">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/gruppo_sviluppo"
+                android:textColor="@android:color/white" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/force_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:src="@android:drawable/stat_notify_sync"
+                app:backgroundTint="@color/colorPrimary"
+                app:fabSize="mini" />
+        </FrameLayout>
+
+    </LinearLayout>
+</ScrollView>
 
