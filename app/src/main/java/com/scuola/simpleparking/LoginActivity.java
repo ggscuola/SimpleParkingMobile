@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "AB123CD:"
+            ":"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -154,6 +154,7 @@ public class LoginActivity extends AppCompatActivity {
            mProgressView.setMessage("Registrazione in corso...");
            mProgressView.setSpinnerType(2);
            mProgressView.show();
+           DUMMY_CREDENTIALS[0] = targa + ":" + password;
            mAuthTask = new UserLoginTask(targa, password);
             mAuthTask.execute((Void) null);
         }
@@ -214,6 +215,8 @@ public class LoginActivity extends AppCompatActivity {
             if (response != null) {
 
                 try{
+
+
                     UserRepository.SetTarga(response, LoginActivity.this);
 
                     //creo nuova istanza di tipo intent e gli dico da dove a dove andare

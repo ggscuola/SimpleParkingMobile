@@ -74,9 +74,7 @@ public class JsonParse {
 
             String codice = list.optJSONObject(0).getString(COLUMN_CODICE);
 
-            if(codice.isEmpty() || codice.equals(myCod)){
-                return response;
-            }
+
 
             int posto = list.optJSONObject(0).getInt(COLUMN_POSTO);
             int piano =  list.optJSONObject(0).getInt(COLUMN_PIANO);
@@ -88,8 +86,15 @@ public class JsonParse {
             //Posizione 2
             response.add(String.valueOf(piano));
 
+
+            if(codice.isEmpty() || codice.equals(myCod)){
+                return response;
+            }
+
             //Salvo le info di prenotazione
             UserRepository.SetInfoPrenotazione(response, activity);
+
+
 
 
         } catch (Exception e) {
