@@ -31,6 +31,7 @@ public class WSService {
 
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
+    private final String DOMAIN = "172.16.13.119";
     public final String URL_REQUEST = "http://172.16.13.119/service.php?mode=0";
     public final String URL_REQUEST1 = "http://192.168.1.6/service.php?mode=0";
 
@@ -76,7 +77,7 @@ public class WSService {
 
         Uri.Builder uriBuilder = new Uri.Builder();
         //uriBuilder.authority("172.16.13.119");
-        uriBuilder.authority("192.168.1.6");
+        uriBuilder.authority(DOMAIN);
         uriBuilder.scheme("http");
         uriBuilder.path("service.php");
         uriBuilder.appendQueryParameter("mode", "2");
@@ -113,7 +114,7 @@ public class WSService {
 
         Uri.Builder uriBuilder = new Uri.Builder();
         //uriBuilder.authority("172.16.13.119");
-        uriBuilder.authority("192.168.1.6");
+        uriBuilder.authority(DOMAIN);
 
         uriBuilder.scheme("http");
         uriBuilder.path("service.php");
@@ -149,7 +150,7 @@ public class WSService {
 
         Uri.Builder uriBuilder = new Uri.Builder();
         //uriBuilder.authority("172.16.13.119");
-        uriBuilder.authority("192.168.1.6");
+        uriBuilder.authority(DOMAIN);
         uriBuilder.scheme("http");
         uriBuilder.path("service.php");
         uriBuilder.appendQueryParameter("mode", "1");
