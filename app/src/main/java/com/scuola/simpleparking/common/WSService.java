@@ -61,7 +61,7 @@ public class WSService {
         mProgressJC.setMessage("Sincronizzazione in corso...");
         mProgressJC.setSpinnerType(2);
         mProgressJC.show();
-        task.execute(URL_REQUEST1);
+        task.execute(URL_REQUEST);
     }
 
 
