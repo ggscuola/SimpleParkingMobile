@@ -218,7 +218,6 @@ public class MainActivity extends AppCompatActivity {
             // do something here
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-            finish();
         }
         return super.onOptionsItemSelected(item);
     }
