@@ -218,9 +218,17 @@ public class SplashActivity extends AppCompatActivity{
         try{
             String targa = UserRepository.GetTarga(this);
 
-            //Verifico se è gia stato prenotato un posto con la mia targa (es. da portale Web)
-            WSService ws = WSService.getInstance();
-            ws.CheckBooking(SplashActivity.this, targa);
+            if(targa == null){
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }else {
+                //Verifico se è gia stato prenotato un posto con la mia targa (es. da portale Web)
+                WSService ws = WSService.getInstance();
+                ws.CheckBooking(SplashActivity.this, targa);
+            }
+
+
 
         }catch (Exception e){
 

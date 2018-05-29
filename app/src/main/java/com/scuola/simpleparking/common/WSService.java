@@ -31,8 +31,8 @@ public class WSService {
 
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
-    private final String DOMAIN = "172.16.13.119";
-    public final String URL_REQUEST = "http://172.16.13.119/service.php?mode=0";
+    private final String DOMAIN = "172.16.13.123";
+    public final String URL_REQUEST = "http://172.16.13.123/service.php?mode=0";
     public final String URL_REQUEST1 = "http://192.168.1.6/service.php?mode=0";
 
     private ProgressDialogJC mProgressJC;
@@ -635,7 +635,7 @@ public class WSService {
         protected void onPostExecute(final String result) {
             try {
 
-                if (result != null) {
+                if (result.equals("")) {
 
                     try {
 

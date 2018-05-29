@@ -132,31 +132,39 @@ public class LoginActivity extends AppCompatActivity {
         String targa = mTargaView.getText().toString();
         String password = mPasswordView.getText().toString();
 
-        boolean cancel = false;
-        View focusView = null;
+        if(targa.length() <= 7){
+
+            boolean cancel = false;
+            View focusView = null;
 
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(targa)) {
-            mTargaView.setError(getString(R.string.error_field_required));
-            focusView = mTargaView;
-            cancel = true;
+            // Check for a valid email address.
+            if (TextUtils.isEmpty(targa)) {
+                mTargaView.setError(getString(R.string.error_field_required));
+                focusView = mTargaView;
+                cancel = true;
+            }
+
+            if (cancel) {
+                // There was an error; don't attempt login and focus the first
+                // form field with an error.
+                focusView.requestFocus();
+            } else {
+                // Show a progress spinner, and kick off a background task to
+                // perform the user login attempt.
+
+                mProgressView.setMessage("Registrazione in corso...");
+                mProgressView.setSpinnerType(2);
+                mProgressView.show();
+                DUMMY_CREDENTIALS[0] = targa + ":" + password;
+                mAuthTask = new UserLoginTask(targa, password);
+                mAuthTask.execute((Void) null);
         }
 
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
 
-           mProgressView.setMessage("Registrazione in corso...");
-           mProgressView.setSpinnerType(2);
-           mProgressView.show();
-           DUMMY_CREDENTIALS[0] = targa + ":" + password;
-           mAuthTask = new UserLoginTask(targa, password);
-            mAuthTask.execute((Void) null);
+        }else{
+            mTargaView.setError("La targa deve essere compresa tra 1 e 7 caratteri");
+
         }
     }
 
