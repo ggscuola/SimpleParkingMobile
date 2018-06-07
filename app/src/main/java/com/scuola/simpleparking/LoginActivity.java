@@ -56,12 +56,10 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
 
     // UI references.
     private AutoCompleteTextView mTargaView;
-    private EditText mPasswordView;
-    private ProgressDialogJC mProgressView;
+    private EditText mIpEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +68,12 @@ public class LoginActivity extends AppCompatActivity {
         // Set up the login form.
         mTargaView = (AutoCompleteTextView) findViewById(R.id.email);
         String targa = null;
+        String ip = null;
 
         try{
             //Provo a vedere se ho gia salvato la targa
             targa = UserRepository.GetTarga(this);
+            ip = UserRepository.GetIp(this);
 
         }catch (Exception e){
 
@@ -84,8 +84,13 @@ public class LoginActivity extends AppCompatActivity {
             mTargaView.setText(targa);
         }
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        mIpEditText = (EditText) findViewById(R.id.ip);
+
+        if(ip != null){
+            mIpEditText.setText(ip);
+        }
+
+        mIpEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
@@ -105,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mProgressView = new ProgressDialogJC(this);
     }
 
 
@@ -120,17 +124,15 @@ public class LoginActivity extends AppCompatActivity {
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
+
 
         // Reset errors.
         mTargaView.setError(null);
-        mPasswordView.setError(null);
+        mIpEditText.setError(null);
 
         // Store values at the time of the login attempt.
         String targa = mTargaView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String ip = mIpEditText.getText().toString();
 
         if(targa.length() <= 7){
 
@@ -153,12 +155,21 @@ public class LoginActivity extends AppCompatActivity {
                 // Show a progress spinner, and kick off a background task to
                 // perform the user login attempt.
 
-                mProgressView.setMessage("Registrazione in corso...");
-                mProgressView.setSpinnerType(2);
-                mProgressView.show();
-                DUMMY_CREDENTIALS[0] = targa + ":" + password;
-                mAuthTask = new UserLoginTask(targa, password);
-                mAuthTask.execute((Void) null);
+                try{
+                    UserRepository.SetTarga(targa, LoginActivity.this);
+                    UserRepository.SetIp(ip, LoginActivity.this);
+
+                    //creo nuova istanza di tipo intent e gli dico da dove a dove andare
+                    Intent intent =new Intent (LoginActivity.this, MainActivity.class);
+                    // faccio partitre l'intent appena creata
+                    startActivity(intent);
+                    finish();
+                }catch (Exception e){
+
+                    Toast.makeText(this,e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
+
         }
 
 
@@ -169,85 +180,5 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    @SuppressLint("StaticFieldLeak")
-    public class UserLoginTask extends AsyncTask<Void, Void, String> {
-
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-
-        @Override
-        protected String doInBackground(Void... params) {
-
-            String response = null;
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return e.getMessage();
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-
-                if(pieces.length == 1){
-                    response = pieces[0];
-                    return response;
-                }
-
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    response = pieces[0] + ":" + pieces[1];
-                    return response;
-                }
-            }
-
-            return response;
-        }
-
-        @Override
-        protected void onPostExecute(final String response) {
-            mAuthTask = null;
-            mProgressView.dismiss();
-
-            if (response != null) {
-
-                try{
-
-
-                    UserRepository.SetTarga(response, LoginActivity.this);
-
-                    //creo nuova istanza di tipo intent e gli dico da dove a dove andare
-                    Intent intent =new Intent (LoginActivity.this, MainActivity.class);
-                    // faccio partitre l'intent appena creata
-                    startActivity(intent);
-                    finish();
-
-                }catch (Exception e){
-
-                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-
-
-
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            mProgressView.dismissWithFailure("Richiesta di registrazione cancellata!");
-        }
-    }
 }
 

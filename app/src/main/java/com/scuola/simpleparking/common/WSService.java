@@ -11,6 +11,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.scuola.simpleparking.CloseBookingActivity;
+import com.scuola.simpleparking.LoginActivity;
 import com.scuola.simpleparking.MainActivity;
 import com.scuola.simpleparking.R;
 import com.scuola.simpleparking.SplashActivity;
@@ -31,9 +32,6 @@ public class WSService {
 
     private String TAG = WSService.class.getSimpleName();
     private int result = Activity.RESULT_CANCELED;
-    private final String DOMAIN = "172.16.13.123";
-    public final String URL_REQUEST = "http://172.16.13.123/service.php?mode=0";
-    public final String URL_REQUEST1 = "http://192.168.1.6/service.php?mode=0";
 
     private ProgressDialogJC mProgressJC;
 
@@ -57,11 +55,25 @@ public class WSService {
 
         GetDataTask task = new GetDataTask();
 
-        mProgressJC = new ProgressDialogJC(mActivity);
-        mProgressJC.setMessage("Sincronizzazione in corso...");
-        mProgressJC.setSpinnerType(2);
-        mProgressJC.show();
-        task.execute(URL_REQUEST);
+        try {
+            Uri.Builder uriBuilder = new Uri.Builder();
+            String ip = UserRepository.GetIp(mActivity);
+            uriBuilder.authority(ip);
+            uriBuilder.scheme("http");
+            uriBuilder.path("service.php");
+            uriBuilder.appendQueryParameter("mode", "0");
+
+            mProgressJC = new ProgressDialogJC(mActivity);
+            mProgressJC.setMessage("Sincronizzazione in corso...");
+            mProgressJC.setSpinnerType(2);
+            mProgressJC.show();
+
+            task.execute(uriBuilder.toString());
+
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+
     }
 
 
@@ -74,16 +86,15 @@ public class WSService {
         mProgressJC.setMessage("Prenotazione in corso...");
         mProgressJC.setSpinnerType(2);
         mProgressJC.show();
-
-        Uri.Builder uriBuilder = new Uri.Builder();
-        //uriBuilder.authority("172.16.13.119");
-        uriBuilder.authority(DOMAIN);
-        uriBuilder.scheme("http");
-        uriBuilder.path("service.php");
-        uriBuilder.appendQueryParameter("mode", "2");
-        String targa = null;
-
         try {
+            Uri.Builder uriBuilder = new Uri.Builder();
+            String ip = UserRepository.GetIp(mActivity);
+            uriBuilder.authority(ip);
+            uriBuilder.scheme("http");
+            uriBuilder.path("service.php");
+            uriBuilder.appendQueryParameter("mode", "2");
+            String targa = null;
+
 
             targa = UserRepository.GetTarga(mActivity);
             uriBuilder.appendQueryParameter("targa", targa);
@@ -111,18 +122,17 @@ public class WSService {
         mProgressJC.setMessage("Chiusura in corso...");
         mProgressJC.setSpinnerType(2);
         mProgressJC.show();
-
-        Uri.Builder uriBuilder = new Uri.Builder();
-        //uriBuilder.authority("172.16.13.119");
-        uriBuilder.authority(DOMAIN);
-
-        uriBuilder.scheme("http");
-        uriBuilder.path("service.php");
-        uriBuilder.appendQueryParameter("mode", "3");
-        String targa = null;
-        String codice = null;
-
         try {
+            Uri.Builder uriBuilder = new Uri.Builder();
+            String ip = UserRepository.GetIp(mActivityClose);
+            uriBuilder.authority(ip);
+
+            uriBuilder.scheme("http");
+            uriBuilder.path("service.php");
+            uriBuilder.appendQueryParameter("mode", "3");
+            String targa = null;
+            String codice = null;
+
 
             targa = UserRepository.GetTarga(mActivityClose);
             uriBuilder.appendQueryParameter("targa", targa);
@@ -150,12 +160,14 @@ public class WSService {
 
         Uri.Builder uriBuilder = new Uri.Builder();
         //uriBuilder.authority("172.16.13.119");
-        uriBuilder.authority(DOMAIN);
-        uriBuilder.scheme("http");
-        uriBuilder.path("service.php");
-        uriBuilder.appendQueryParameter("mode", "1");
 
         try {
+            String ip = UserRepository.GetIp(mActivitySplash);
+            uriBuilder.authority(ip);
+            uriBuilder.scheme("http");
+            uriBuilder.path("service.php");
+            uriBuilder.appendQueryParameter("mode", "1");
+
 
             uriBuilder.appendQueryParameter("targa", targa);
 
@@ -239,7 +251,7 @@ public class WSService {
                                 intent = new Intent(mActivitySplash, CloseBookingActivity.class);
 
                             }
-                        }else {
+                        } else {
 
                             intent = new Intent(mActivitySplash, MainActivity.class);
                         }
@@ -256,6 +268,9 @@ public class WSService {
                 } else {
 
                     Toast.makeText(mActivitySplash, "Errore: verificare la connessione con la Raspberry", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(mActivitySplash, LoginActivity.class);
+                    mActivitySplash.startActivity(intent);
+                    mActivitySplash.finish();
 
                 }
             } catch (Exception e)
@@ -633,48 +648,32 @@ public class WSService {
 
         @Override
         protected void onPostExecute(final String result) {
+
+
             try {
 
-                if (result.equals("")) {
+                mProgressJC.dismissWithSuccess("Pronotazione chiusa!");
+                UserRepository.SetInfoPrenotazione(null, mActivityClose);
 
-                    try {
+                new Runnable() {
+                    @Override
+                    public void run() {
 
-                        mProgressJC.dismissWithSuccess("Pronotazione chiusa!");
-                        UserRepository.SetInfoPrenotazione(null, mActivityClose);
-
-                        new Runnable() {
-                            @Override
-                            public void run() {
-
-                                Intent intent = new Intent(mActivityClose, MainActivity.class);
-                                mActivityClose.startActivity(intent);
-                                mActivityClose.finish();
-                            }
-                        }.run();
-
-
-                    } catch (Exception e) {
-
-                        Log.e(TAG, e.getMessage());
+                        Intent intent = new Intent(mActivityClose, MainActivity.class);
+                        mActivityClose.startActivity(intent);
+                        mActivityClose.finish();
                     }
+                }.run();
 
 
-                } else {
+            } catch (Exception e) {
 
-                    mProgressJC.dismissWithFailure("0 resulti!");
-                    Toast.makeText(mActivityClose, "Errore: verificare la connessione con la Raspberry", Toast.LENGTH_LONG).show();
-
-                }
-
-
-            } catch (Exception e)
-
-            {
                 mProgressJC.dismissWithFailure("Errore sincronizzazione!");
 
                 Log.e(TAG, e.getMessage());
-
             }
+
+
         }
 
 

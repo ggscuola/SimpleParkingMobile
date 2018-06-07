@@ -216,7 +216,7 @@ public class SplashActivity extends AppCompatActivity{
 
 
         try{
-            String targa = UserRepository.GetTarga(this);
+           String targa = UserRepository.GetTarga(this);
 
             if(targa == null){
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
@@ -230,7 +230,9 @@ public class SplashActivity extends AppCompatActivity{
 
 
 
+
         }catch (Exception e){
+
 
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
         }

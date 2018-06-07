@@ -137,4 +137,32 @@ public class UserRepository {
         }
 
     }
+
+
+    public static void SetIp (String ip , Context context)throws Exception{
+
+        try {
+            SharedPreferences editor = context.getSharedPreferences(context.getResources().getString(R.string.SET),Context.MODE_PRIVATE);
+            editor.edit().putString(context.getResources().getString(R.string.IP), ip).apply();
+
+
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
+    }
+
+
+    public static String GetIp ( Context context) throws Exception{
+
+        try{
+            SharedPreferences editor = context.getSharedPreferences(context.getResources().getString(R.string.SET),Context.MODE_PRIVATE);
+            String ip = editor.getString(context.getResources().getString(R.string.IP), null);
+            return ip;
+
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+
+    }
 }
